@@ -1770,6 +1770,7 @@ class PlayerActivity :
         // For network files played via proxy (SMB/WebDAV/FTP), use the original network file path
         val networkFilePath = intent.getStringExtra("network_file_path")
         val networkConnectionId = intent.getLongExtra("network_connection_id", -1L)
+        val autoloadDanmaku = subtitlesPreferences.autoloadDanmaku.get()
 
         if (networkFilePath != null && networkConnectionId != -1L) {
           // Pass network file path and connection ID for subtitle discovery
@@ -1777,6 +1778,7 @@ class PlayerActivity :
             videoFilePath = networkFilePath,
             videoFileName = fileName,
             networkConnectionId = networkConnectionId,
+            autoloadDanmaku = autoloadDanmaku,
           )
         } else {
           // Regular file or direct network stream
@@ -1785,6 +1787,7 @@ class PlayerActivity :
             SubtitleOps.autoloadSubtitles(
               videoFilePath = filePath,
               videoFileName = fileName,
+              autoloadDanmaku = autoloadDanmaku,
             )
           }
         }
