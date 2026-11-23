@@ -210,6 +210,21 @@ object SubtitlesPreferencesScreen : Screen {
 
               PreferenceDivider()
 
+              val autoloadDanmaku by preferences.autoloadDanmaku.collectAsState()
+              SwitchPreference(
+                value = autoloadDanmaku,
+                onValueChange = { preferences.autoloadDanmaku.set(it) },
+                title = { Text(stringResource(R.string.pref_subtitles_autoload_danmaku_title)) },
+                summary = {
+                  Text(
+                    stringResource(R.string.pref_subtitles_autoload_danmaku_summary),
+                    color = MaterialTheme.colorScheme.outline,
+                  )
+                },
+              )
+
+              PreferenceDivider()
+
               val overrideAss by preferences.overrideAssSubs.collectAsState()
               SwitchPreference(
                 value = overrideAss,
